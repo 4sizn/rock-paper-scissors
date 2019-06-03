@@ -22,16 +22,32 @@ const makePlayer = hand => {
 const rpsLogic1 = (p1, p2) => {
   return (p1.hand + p2.hand * -1 + 2) % 3
 }
+/**
+ *
+ * @param  {{hand:string, id:int}[]} players
+ */
+
+const result = (...players) => {
+  const pHands = [...new Set(players.map(p => p.hand))]
+  if (phands.length !== 2) return { draw: true }
+  winnedHand
+  return {
+    winners: players.filter(p => p.hand === winnedHand)
+  }
+}
 
 // rps group logic
 const rpsLogic2 = rArr => {
-  if (
-    rArr.some(r => r.result === 2) ||
-    (rArr.some(r => r.result === 0) && rArr.some(r => r.result === 1))
-  )
-    return 2 //비김
-  if (rArr.every(r => r.result === 1)) return 1 //짐
-  return 0 // 이김
+  const o = {
+    win: [],
+    lose: [],
+    draw: []
+  }
+  console.log(rArr)
+  // 하나거나, 세개거나, 내입장에서 이기거나 지면 안됨 draw
+  // 핸드 방식이 최대 2개 이상이어야지 결과 성립
+  // 누가 이겼는지까지 판단해야함
+  //   그후에 내가 이겼는지 다음로직에서 판단
 }
 
 const singleGameResult = (p1, p2, gameLogic) => {
@@ -40,7 +56,7 @@ const singleGameResult = (p1, p2, gameLogic) => {
       VS[gameLogic(p1, p2)]
     }]`
   )
-  return { me: p1, other: p2, result: gameLogic(p1, p2) }
+  return { me: p1, other: p2, winner: gameLogic(p1, p2) }
 }
 
 const groupGameResult = o => {

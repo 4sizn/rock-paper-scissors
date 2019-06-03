@@ -1,4 +1,4 @@
-import { dailyQueue, rpsSimulation, VS, METHOD, makePlayer } from "./src"
+import { dailyQueue, game, VS, METHOD, makePlayer, rpsSimulation } from "./src"
 
 const dailyHands = dailyQueue(5)
 const dailyEl = document.querySelector("#daily")
@@ -36,15 +36,20 @@ modeRadiosEl.querySelectorAll("input").forEach(radio => {
 
 gameStart(dailyHands)
 
-function gameStart(hands) {
+function gameStart(players) {
   resultEl.innerHTML = ""
-  const gamesResult = rpsSimulation(hands)
-
-  console.log(gamesResult)
-  gamesResult.forEach(rArr => {
+  const rArr = rpsSimulation(players)
+  rArr.forEach(r => {
     const li = document.createElement("li")
-    const isWin = VS[rArr.result]
-    li.innerText = isWin
+    if (r.hasOwnProperty("draw")) {
+      li.innerText = "draw"
+    } else {
+      if (players.find(p => p.hand === r.winners[0].hand)) {
+        li.innerText = "win"
+      } else {
+        li.innerText = "lose"
+      }
+    }
     resultEl.append(li)
   })
 }

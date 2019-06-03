@@ -39,17 +39,12 @@ gameStart(dailyHands)
 function gameStart(hands) {
   resultEl.innerHTML = ""
   const gamesResult = rpsSimulation(hands)
+
+  console.log(gamesResult)
   gamesResult.forEach(rArr => {
     const li = document.createElement("li")
-    rArr.shift() //except Mine
-    const isWin = VS[gameResult(rArr)]
+    const isWin = VS[rArr.result]
     li.innerText = isWin
     resultEl.append(li)
   })
-}
-
-function gameResult(results) {
-  if (results.some(r => r === 2)) return 2 //비김
-  if (results.some(r => r === 1)) return 1 //짐
-  return 0 // 이김
 }

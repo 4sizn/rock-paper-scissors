@@ -1,19 +1,15 @@
-// 상수
-// const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x)
 const ROCK = 0
 const PAPER = 1
 const SCISSORS = 2
-const WEB2_MAN_NUM = 3
+const WEB2_MAN_NUM = 11
 
-// 텍스트화
 export const METHOD = {
   [ROCK]: "주먹",
   [PAPER]: "보",
   [SCISSORS]: "가위"
 }
 
-// 결과
-const VS = ["이김", "짐", "비김"] // 0, 1, 2
+const VS = ["이김", "짐", "비김"]
 
 const makePlayer = hand => {
   assert(hand >= 0 && hand < 3, "player hands problem...")
@@ -22,20 +18,38 @@ const makePlayer = hand => {
   return player
 }
 
-const rpsLogic = (p1, p2) => {
-  console.log(
-    `너는 ${METHOD[p1.hand]}이고, 상대는 ${METHOD[p2.hand]}이며 넌[${
-      VS[(p1.hand + p2.hand * -1 + 2) % 3]
-    }]`
-  )
+// rps single logic
+const rpsLogic1 = (p1, p2) => {
   return (p1.hand + p2.hand * -1 + 2) % 3
 }
 
-// 전체 인원에 대한 세부 결과값이 나와야 한다.
-// [player:hand, player:r='w', player:hand, player:r='l']
+// rps group logic
+const rpsLogic2 = rArr => {
+  if (
+    rArr.some(r => r.result === 2) ||
+    (rArr.some(r => r.result === 0) && rArr.some(r => r.result === 1))
+  )
+    return 2 //비김
+  if (rArr.every(r => r.result === 1)) return 1 //짐
+  return 0 // 이김
+}
 
-const singleGame = (me, every) => {
-  return every.map(p => rpsLogic(me, p))
+const singleGameResult = (p1, p2, gameLogic) => {
+  console.log(
+    `너는 ${METHOD[p1.hand]}이고, 상대는 ${METHOD[p2.hand]}이며 넌[${
+      VS[gameLogic(p1, p2)]
+    }]`
+  )
+  return { me: p1, other: p2, result: gameLogic(p1, p2) }
+}
+
+const groupGameResult = o => {
+  console.log(`그룹 게임 결과 : result:${VS[rpsLogic2([...o])]}`)
+  return { o, result: rpsLogic2([...o]) }
+}
+
+const game = (me, others) => {
+  return groupGameResult(others.map(p => singleGameResult(me, p, rpsLogic1)))
 }
 
 const makeComputers = n => {
@@ -46,7 +60,7 @@ const makeComputers = n => {
 }
 
 const rpsSimulation = hands =>
-  hands.map(h => singleGame(h, [h, ...makeComputers(WEB2_MAN_NUM - 1)]))
+  hands.map(h => game(h, [...makeComputers(WEB2_MAN_NUM - 1)]))
 
 const dailyQueue = makeComputers
 
@@ -59,7 +73,7 @@ function assert(condition, message) {
 module.exports = {
   METHOD,
   VS,
-  rpsLogic,
+  rpsLogic1,
   dailyQueue,
   makePlayer,
   makeComputers,

@@ -38,7 +38,7 @@ const game = players => {
   if (pHands.length !== 2) return { draw: true }
 
   const winnedHand = hands => {
-    return !rpsLogic(hands[0], hands[1]) ? hands[0] : hands[1]
+    return rpsLogic(hands[0], hands[1]) ? hands[1] : hands[0]
   }
 
   return {

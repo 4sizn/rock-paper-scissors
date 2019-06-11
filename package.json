@@ -6,7 +6,8 @@
   "scripts": {
     "start": "parcel ./index.html",
     "dev": "jest --watch && parcel ./index.html",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "jest": "jest src/index.test.js"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

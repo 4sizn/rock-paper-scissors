@@ -13,15 +13,14 @@ const VS = ["이김", "짐", "비김"]
 
 const makePlayer = hand => {
   assert(hand >= 0 && hand < 3, "player hands problem...")
-  const player = {}
-  player.hand = hand
-  return player
+  return { hand }
 }
 
 const makeComputers = n => {
   const players = []
-  for (let i = 0; i < n; i++)
+  for (let i = 0; i < n; i++) {
     players.push(makePlayer(Math.floor(Math.random() * 3)))
+  }
   return players
 }
 

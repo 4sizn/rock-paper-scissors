@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "main": "./dist/index.js",
   "license": "MIT",
+  "name": "rps-game",
   "scripts": {
     "start": "parcel ./index.html",
     "build": "parcel build ./src/index.js",
     "dev": "jest --watch & & parcel ./index.html",
     "test": "jest --watch",
     "jest": "jest src/index.test.js"
+  },
+  "author": {
+    "name": "Hee Seok Shin",
+    "email": "4sizn@naver.com"
   },
   "keywords": [
     "rps",

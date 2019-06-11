@@ -1,14 +1,22 @@
 {
   "name": "rock-paper-scissors",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "license": "MIT",
   "scripts": {
     "start": "parcel ./index.html",
-    "dev": "jest --watch && parcel ./index.html",
+    "build": "parcel build ./src/index.js",
+    "dev": "jest --watch & & parcel ./index.html",
     "test": "jest --watch",
     "jest": "jest src/index.test.js"
   },
+  "keywords": [
+    "rps",
+    "node",
+    "javascript",
+    "rock-paper-scissors"
+  ],
+  "homepage": "https://github.com/4sizn/rock-paper-scissors",
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
@@ -16,6 +24,10 @@
     "jest": "^24.8.0",
     "parcel": "^1.12.3",
     "sass": "^1.20.1"
+  },
+  "bugs": {
+    "url": "https://github.com/4sizn/rock-paper-scissors/issues",
+    "email": "4sizn@naver.com"
   },
   "dependencies": {
     "lodash": "^4.17.11"

@@ -1,9 +1,8 @@
 {
-  "name": "rock-paper-scissors",
-  "version": "1.0.0",
-  "main": "./dist/index.js",
-  "license": "MIT",
   "name": "rps-game",
+  "version": "1.0.1",
+  "main": "./src/index.js",
+  "license": "MIT",
   "scripts": {
     "start": "parcel ./index.html",
     "build": "parcel build ./src/index.js",
@@ -35,6 +34,7 @@
     "email": "4sizn@naver.com"
   },
   "dependencies": {
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "rps-game": "^1.0.1"
   }
 }

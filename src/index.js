@@ -1,7 +1,7 @@
 const ROCK = 0
 const PAPER = 1
 const SCISSORS = 2
-const WEB2_MAN_NUM = 2
+const WEB2_MAN_NUM = 11
 
 export const METHOD = {
   [ROCK]: "주먹",
@@ -9,9 +9,9 @@ export const METHOD = {
   [SCISSORS]: "가위"
 }
 
-const VS = ["이김", "짐", "비김"]
+export const VS = ["이김", "짐", "비김"]
 
-const makePlayer = hand => {
+export const makePlayer = hand => {
   assert(hand >= 0 && hand < 3, "player hands problem...")
   return { hand }
 }
@@ -32,7 +32,7 @@ const rpsLogic = (h1, h2) => {
  *
  * @param  {{hand:string, id:int}[]} players
  */
-const game = players => {
+export const game = players => {
   const pHands = [...new Set(players.map(p => p.hand))]
   if (pHands.length !== 2) return { draw: true }
 
@@ -45,24 +45,13 @@ const game = players => {
   }
 }
 
-const rpsSimulation = players =>
+export const rpsSimulation = players =>
   players.map(p => game([p, ...makeComputers(WEB2_MAN_NUM - 1)]))
 
-const dailyQueue = makeComputers
+export const dailyQueue = makeComputers
 
 function assert(condition, message) {
   if (!condition) {
     throw new Error(message || "Assertion failed")
   }
-}
-
-module.exports = {
-  METHOD,
-  rpsSimulation,
-  VS,
-  rpsLogic,
-  dailyQueue,
-  makePlayer,
-  makeComputers,
-  game
 }

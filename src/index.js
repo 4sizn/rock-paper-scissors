@@ -12,9 +12,10 @@ export const RESULT = {
 
 const WEB2_MAN_NUM = 11
 
+let uuid = 0
 export const makePlayer = hand => {
   assert(hand >= 0 && hand < 3, "player hands problem...")
-  return { hand }
+  return { id: uuid++, hand }
 }
 
 const makeComputers = n => {

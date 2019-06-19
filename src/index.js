@@ -1,19 +1,21 @@
-const ROCK = 0
-const PAPER = 1
-const SCISSORS = 2
-const WEB2_MAN_NUM = 11
-
-export const METHOD = {
-  [ROCK]: "주먹",
-  [PAPER]: "보",
-  [SCISSORS]: "가위"
+export const HAND = {
+  ROCK: 0,
+  PAPER: 1,
+  SCISSORS: 2
 }
 
-export const VS = ["이김", "짐", "비김"]
+export const RESULT = {
+  WIN: 0,
+  LOSE: 1,
+  DRAW: 2
+}
 
+const WEB2_MAN_NUM = 11
+
+let uuid = 0
 export const makePlayer = hand => {
   assert(hand >= 0 && hand < 3, "player hands problem...")
-  return { hand }
+  return { id: uuid++, hand }
 }
 
 const makeComputers = n => {
@@ -24,10 +26,10 @@ const makeComputers = n => {
   return players
 }
 
-// rps single logic
-const rpsLogic = (h1, h2) => {
-  return (h1 + h2 * -1 + 2) % 3
+export const getGameResult = (myHand, otherHand) => {
+  return [RESULT.WIN, RESULT.LOSE, RESULT.DRAW][(myHand - otherHand + 2) % 3]
 }
+
 /**
  *
  * @param  {{hand:string, id:int}[]} players
@@ -36,13 +38,9 @@ export const game = players => {
   const pHands = [...new Set(players.map(p => p.hand))]
   if (pHands.length !== 2) return { draw: true }
 
-  const winnedHand = hands => {
-    return rpsLogic(hands[0], hands[1]) ? hands[1] : hands[0]
-  }
+  const winned = getGameResult(pHands[0], pHands[1]) === RESULT.WIN ? pHands[0] : pHands[1]
 
-  return {
-    winners: players.filter(p => p.hand === winnedHand(pHands))
-  }
+  return { winners: players.filter(p => p.hand === winned) }
 }
 
 export const rpsSimulation = players =>

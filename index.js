@@ -1,4 +1,4 @@
-import { dailyQueue, makePlayer, rpsSimulation, HAND } from "./src"
+import { dailyQueue, makePlayer, rpsSimulation, HAND, RESULT } from "./src"
 
 const dailyHands = dailyQueue(5)
 const dailyEl = document.querySelector("#daily")
@@ -12,6 +12,11 @@ const HAND_NAME = {
   [HAND.ROCK]: '주먹',
   [HAND.SCISSORS]: '가위',
   [HAND.PAPER]: '보'
+}
+const RESULT_NAME = {
+  [RESULT.WIN]: '이겼다',
+  [RESULT.LOSE]: '졌다',
+  [RESULT.DRAW]: '비겼네'
 }
 
 dailyHands.forEach(h => {
@@ -48,12 +53,12 @@ function gameStart(players) {
   rArr.forEach(r => {
     const li = document.createElement("li")
     if (r.hasOwnProperty("draw")) {
-      li.innerText = "draw"
+      li.innerText = RESULT_NAME[RESULT.DRAW]
     } else {
       if (players.find(p => p.hand === r.winners[0].hand)) {
-        li.innerText = "win"
+        li.innerText = RESULT_NAME[RESULT.WIN]
       } else {
-        li.innerText = "lose"
+        li.innerText = RESULT_NAME[RESULT.LOSE]
       }
     }
     resultEl.append(li)

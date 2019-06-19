@@ -4,9 +4,13 @@ export const HAND = {
   SCISSORS: 2
 }
 
-const WEB2_MAN_NUM = 11
+export const RESULT = {
+  WIN: 0,
+  LOSE: 1,
+  DRAW: 2
+}
 
-export const VS = ["이김", "짐", "비김"]
+const WEB2_MAN_NUM = 11
 
 export const makePlayer = hand => {
   assert(hand >= 0 && hand < 3, "player hands problem...")

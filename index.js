@@ -1,4 +1,4 @@
-import { dailyQueue, game, VS, METHOD, makePlayer, rpsSimulation } from "./src"
+import { dailyQueue, makePlayer, rpsSimulation, HAND } from "./src"
 
 const dailyHands = dailyQueue(5)
 const dailyEl = document.querySelector("#daily")
@@ -8,9 +8,15 @@ const modeRadiosEl = document.querySelector("#mode-radios")
 const resultEl = document.querySelector("#result")
 const customHands = []
 
+const HAND_NAME = {
+  [HAND.ROCK]: '주먹',
+  [HAND.SCISSORS]: '가위',
+  [HAND.PAPER]: '보'
+}
+
 dailyHands.forEach(h => {
   const li = document.createElement("li")
-  li.innerText = METHOD[h.hand]
+  li.innerText = HAND_NAME[h.hand]
   dailyEl.append(li)
 })
 
@@ -18,7 +24,7 @@ myHandEl.querySelectorAll("button").forEach(b => {
   b.addEventListener("click", e => {
     const rps = Number(e.currentTarget.value)
     const li = document.createElement("li")
-    li.innerText = METHOD[rps]
+    li.innerText = HAND_NAME[rps]
     customHands.push(makePlayer(rps))
     customEl.append(li)
   })

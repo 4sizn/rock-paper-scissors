@@ -1,13 +1,10 @@
-const ROCK = 0
-const PAPER = 1
-const SCISSORS = 2
-const WEB2_MAN_NUM = 11
-
-export const METHOD = {
-  [ROCK]: "주먹",
-  [PAPER]: "보",
-  [SCISSORS]: "가위"
+export const HAND = {
+  ROCK: 0,
+  PAPER: 1,
+  SCISSORS: 2
 }
+
+const WEB2_MAN_NUM = 11
 
 export const VS = ["이김", "짐", "비김"]
 

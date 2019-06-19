@@ -38,13 +38,9 @@ export const game = players => {
   const pHands = [...new Set(players.map(p => p.hand))]
   if (pHands.length !== 2) return { draw: true }
 
-  const winnedHand = hands => {
-    return getGameResult(hands[0], hands[1]) === RESULT.WIN ? hands[0] : hands[1]
-  }
+  const winned = getGameResult(pHands[0], pHands[1]) === RESULT.WIN ? pHands[0] : pHands[1]
 
-  return {
-    winners: players.filter(p => p.hand === winnedHand(pHands))
-  }
+  return { winners: players.filter(p => p.hand === winned) }
 }
 
 export const rpsSimulation = players =>

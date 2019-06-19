@@ -28,15 +28,15 @@ describe("check rps logic", () => {
 
 describe("check rps group logic", () => {
   test("winner", () => {
-    expect(game([makePlayer(0), makePlayer(2)])).toEqual({
+    expect(game([makePlayer(0), makePlayer(2)])).toMatchObject({
       winners: [{ hand: 0 }]
     })
-    expect(game([makePlayer(1), makePlayer(0), makePlayer(0)])).toEqual({
+    expect(game([makePlayer(1), makePlayer(0), makePlayer(0)])).toMatchObject({
       winners: [{ hand: 1 }]
     })
     expect(
       game([makePlayer(2), makePlayer(1), makePlayer(1), makePlayer(1)])
-    ).toEqual({
+    ).toMatchObject({
       winners: [{ hand: 2 }]
     })
   })

@@ -25,7 +25,7 @@ const makeComputers = n => {
 }
 
 // rps single logic
-const rpsLogic = (h1, h2) => {
+export const rpsLogic = (h1, h2) => {
   return (h1 + h2 * -1 + 2) % 3
 }
 /**

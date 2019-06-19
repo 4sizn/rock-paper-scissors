@@ -26,10 +26,10 @@ const makeComputers = n => {
   return players
 }
 
-// rps single logic
-export const rpsLogic = (h1, h2) => {
-  return (h1 + h2 * -1 + 2) % 3
+export const getGameResult = (myHand, otherHand) => {
+  return [RESULT.WIN, RESULT.LOSE, RESULT.DRAW][(myHand - otherHand + 2) % 3]
 }
+
 /**
  *
  * @param  {{hand:string, id:int}[]} players
@@ -39,7 +39,7 @@ export const game = players => {
   if (pHands.length !== 2) return { draw: true }
 
   const winnedHand = hands => {
-    return rpsLogic(hands[0], hands[1]) ? hands[1] : hands[0]
+    return getGameResult(hands[0], hands[1]) === RESULT.WIN ? hands[0] : hands[1]
   }
 
   return {
